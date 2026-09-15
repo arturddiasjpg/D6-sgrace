@@ -176,35 +176,54 @@ body.themePurple .roguelikeModifierCard.tier1{background:#2b2b2d;border-color:#8
 /* V43.1 — física suave e controles dos modificadores */
 .dieControls{display:flex;gap:3px;justify-content:center;flex-wrap:wrap;max-width:150px}.dieMini{min-width:29px;padding:3px 5px}.dieWrap{will-change:transform;animation:dieSettle .72s cubic-bezier(.16,.9,.2,1) both}.dieWrap:nth-child(2){animation-delay:.05s}.dieWrap:nth-child(3){animation-delay:.1s}.dieWrap:nth-child(4){animation-delay:.15s}.dieWrap:nth-child(5){animation-delay:.2s}.dieWrap:nth-child(6){animation-delay:.25s}.operationCard .center{font-size:clamp(12px,2.5vw,20px);text-shadow:0 0 8px currentColor}.roguelikeModifierCard .tierBadge,.roguelikeModifierCard .intensityBadge{backdrop-filter:blur(3px)}
 
-/* V44 — tema persistente em TODAS as telas + buraco negro maior no menu */
-#gameThemeFX{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;display:block}
-#gameThemeFX>div{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
-.app{position:relative;z-index:2}
-.mainMenu,.menuScreen{z-index:500}
-body:not(.themePurple):not(.themePink) #gameThemeFX{opacity:.72}
-body.themePurple #gameThemeFX .gamePurpleLayer,body.themePink #gameThemeFX .gamePinkLayer{opacity:1}
-body.themePurple #gameThemeFX .gameCosmosLayer,body.themePink #gameThemeFX .gameCosmosLayer{opacity:.15}
-body:not(.themePurple):not(.themePink) #gameThemeFX .gameCosmosLayer{opacity:.9}
-.gameCosmosLayer{background:radial-gradient(circle at 20% 25%,rgba(255,255,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 78% 18%,rgba(255,255,255,.65) 0 1px,transparent 2px),radial-gradient(circle at 55% 78%,rgba(255,255,255,.55) 0 1px,transparent 2px),radial-gradient(circle at 88% 70%,rgba(255,255,255,.7) 0 1px,transparent 2px);background-size:180px 160px,240px 190px,210px 180px,260px 220px;animation:gameStars 14s linear infinite}
-.gameCosmosLayer:after{content:'';position:absolute;inset:-25%;background:conic-gradient(from 20deg at 50% 50%,transparent,#fff0,rgba(130,100,255,.08),transparent 28%,rgba(255,255,255,.04),transparent 55%);animation:gameNebula 18s linear infinite}
-.gamePurpleLayer{background:radial-gradient(circle at 50% 45%,rgba(173,112,255,.13),transparent 48%),radial-gradient(circle at 15% 80%,rgba(100,50,180,.09),transparent 42%);animation:purplePulse 5s ease-in-out infinite alternate}
-.gamePinkLayer{background:radial-gradient(circle at 50% 45%,rgba(255,110,180,.11),transparent 48%),radial-gradient(circle at 85% 20%,rgba(255,180,215,.1),transparent 40%);animation:pinkPulse 5.5s ease-in-out infinite alternate}
-.gameOceanLayer{background:radial-gradient(circle at 12% 90%,rgba(40,180,255,.08),transparent 35%),radial-gradient(circle at 90% 20%,rgba(50,130,255,.06),transparent 38%)}
-.gameEmberLayer{background:radial-gradient(circle at 50% 100%,rgba(255,90,30,.1),transparent 45%);animation:emberPulse 3.8s ease-in-out infinite alternate}
-@keyframes gameStars{from{background-position:0 0,0 0,0 0,0 0}to{background-position:180px 160px,-240px 190px,210px -180px,-260px 220px}}
-@keyframes gameNebula{from{transform:rotate(0deg) scale(1)}to{transform:rotate(360deg) scale(1.08)}}
-@keyframes purplePulse{from{filter:brightness(.9)}to{filter:brightness(1.18)}}
-@keyframes pinkPulse{from{filter:brightness(.92)}to{filter:brightness(1.13)}}
-@keyframes emberPulse{from{opacity:.65;transform:scale(1)}to{opacity:1;transform:scale(1.04)}}
-/* Buraco negro: fica atrás do menu, grande e parcialmente encoberto pelo menuBox */
-.mainMenu:before{content:'';position:absolute;left:50%;top:50%;width:min(720px,82vw);height:min(720px,82vw);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at center,#000 0 27%,#050505 28% 35%,rgba(255,255,255,.18) 36% 37%,transparent 38%),conic-gradient(from 0deg,transparent 0 8%,rgba(255,255,255,.22) 13%,transparent 21% 42%,rgba(255,255,255,.12) 48%,transparent 57% 78%,rgba(255,255,255,.2) 84%,transparent 91%);filter:blur(.2px) drop-shadow(0 0 35px rgba(255,255,255,.12));animation:menuSingularitySpin 15s linear infinite;pointer-events:none;z-index:0}
-.mainMenu:after{content:'';position:absolute;left:50%;top:50%;width:min(430px,52vw);height:min(430px,52vw);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#000 0 34%,rgba(0,0,0,.92) 35% 47%,transparent 48%);box-shadow:0 0 30px rgba(255,255,255,.12),0 0 85px rgba(0,0,0,.95);animation:menuSingularityPulse 3.2s ease-in-out infinite alternate;pointer-events:none;z-index:1}
-@keyframes menuSingularitySpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-@keyframes menuSingularityPulse{from{transform:translate(-50%,-50%) scale(.96);filter:brightness(.85)}to{transform:translate(-50%,-50%) scale(1.04);filter:brightness(1.2)}}
-body.themePurple .mainMenu:before{filter:drop-shadow(0 0 45px rgba(173,112,255,.42));background:radial-gradient(circle at center,#000 0 27%,#050208 28% 35%,rgba(190,130,255,.3) 36% 37%,transparent 38%),conic-gradient(from 0deg,transparent 0 8%,rgba(200,150,255,.4) 13%,transparent 21% 42%,rgba(150,90,255,.25) 48%,transparent 57% 78%,rgba(220,170,255,.35) 84%,transparent 91%)}
-body.themePink .mainMenu:before{filter:drop-shadow(0 0 45px rgba(198,83,130,.36));background:radial-gradient(circle at center,#000 0 27%,#12070d 28% 35%,rgba(255,160,200,.3) 36% 37%,transparent 38%),conic-gradient(from 0deg,transparent 0 8%,rgba(255,170,210,.4) 13%,transparent 21% 42%,rgba(210,80,140,.24) 48%,transparent 57% 78%,rgba(255,190,220,.35) 84%,transparent 91%)}
-@media(max-width:600px){.mainMenu:before{width:105vw;height:105vw}.mainMenu:after{width:62vw;height:62vw}}
-@media(prefers-reduced-motion:reduce){#gameThemeFX>div,.mainMenu:before,.mainMenu:after{animation:none}}
+/* THEME GAMEPLAY V2 — temas realmente aplicados à partida inteira */
+body.themePurple,body.themePink,body.themeCosmos,body.themeOcean,body.themeEmber{
+  --game-bg:var(--bg); --game-panel:var(--panel); --game-border:color-mix(in srgb,var(--ink) 35%,transparent);
+}
+body.themePurple .app,body.themePink .app,body.themeCosmos .app,body.themeOcean .app,body.themeEmber .app{background:transparent;color:var(--ink)}
+body.themePurple .top,body.themePink .top,body.themeCosmos .top,body.themeOcean .top,body.themeEmber .top{border-color:var(--accent)}
+body.themePurple .board,body.themePink .board,body.themeCosmos .board,body.themeOcean .board,body.themeEmber .board,
+body.themePurple .player,body.themePink .player,body.themeCosmos .player,body.themeOcean .player,body.themeEmber .player,
+body.themePurple .panel,body.themePink .panel,body.themeCosmos .panel,body.themeOcean .panel,body.themeEmber .panel{
+ background:var(--game-panel);color:var(--ink);border-color:var(--accent);
+ box-shadow:6px 6px var(--shadow);
+}
+body.themePurple .table,body.themePink .table,body.themeCosmos .table,body.themeOcean .table,body.themeEmber .table{
+ background:var(--table);color:var(--ink);border-color:var(--accent);box-shadow:5px 6px var(--shadow)
+}
+body.themePurple .btn,body.themePurple .diceBtn,body.themePurple .goPlay,body.themePurple .dieMini,
+body.themePink .btn,body.themePink .diceBtn,body.themePink .goPlay,body.themePink .dieMini,
+body.themeCosmos .btn,body.themeCosmos .diceBtn,body.themeCosmos .goPlay,body.themeCosmos .dieMini,
+body.themeOcean .btn,body.themeOcean .diceBtn,body.themeOcean .goPlay,body.themeOcean .dieMini,
+body.themeEmber .btn,body.themeEmber .diceBtn,body.themeEmber .goPlay,body.themeEmber .dieMini{
+ background:var(--button);color:var(--ink);border-color:var(--accent);box-shadow:3px 3px var(--shadow)
+}
+body.themePurple .btn:hover,body.themePurple .diceBtn:hover,body.themePurple .goPlay:hover,
+body.themePink .btn:hover,body.themePink .diceBtn:hover,body.themePink .goPlay:hover,
+body.themeCosmos .btn:hover,body.themeCosmos .diceBtn:hover,body.themeCosmos .goPlay:hover,
+body.themeOcean .btn:hover,body.themeOcean .diceBtn:hover,body.themeOcean .goPlay:hover,
+body.themeEmber .btn:hover,body.themeEmber .diceBtn:hover,body.themeEmber .goPlay:hover{filter:brightness(1.14);box-shadow:0 0 18px color-mix(in srgb,var(--accent) 45%,transparent),3px 3px var(--shadow)}
+body.themePurple .diceBox,body.themePink .diceBox,body.themeCosmos .diceBox,body.themeOcean .diceBox,body.themeEmber .diceBox{background:var(--dice);color:var(--diceInk);border-color:var(--accent);box-shadow:4px 5px var(--shadow)}
+body.themePurple .die,body.themePink .die,body.themeCosmos .die,body.themeOcean .die,body.themeEmber .die{background:var(--dice);color:var(--diceInk);border-color:var(--accent);box-shadow:4px 4px var(--shadow)}
+body.themePurple .log,body.themePink .log,body.themeCosmos .log,body.themeOcean .log,body.themeEmber .log{background:color-mix(in srgb,var(--game-panel) 88%,#000);border-color:var(--accent);color:var(--ink)}
+body.themePurple .modal,body.themePink .modal,body.themeCosmos .modal,body.themeOcean .modal,body.themeEmber .modal{background:var(--game-panel);color:var(--ink);border-color:var(--accent);box-shadow:0 0 35px color-mix(in srgb,var(--accent) 45%,transparent)}
+body.themePurple .card,body.themePink .card,body.themeCosmos .card,body.themeOcean .card,body.themeEmber .card{transition:transform .16s ease,box-shadow .16s ease,filter .16s ease}
+body.themePurple .card:hover,body.themePink .card:hover,body.themeCosmos .card:hover,body.themeOcean .card:hover,body.themeEmber .card:hover{filter:brightness(1.08);box-shadow:0 0 18px color-mix(in srgb,var(--accent) 28%,transparent),3px 4px var(--shadow)}
+body.themePurple .menuChoice,body.themePink .menuChoice,body.themeCosmos .menuChoice,body.themeOcean .menuChoice,body.themeEmber .menuChoice{background:var(--button);color:var(--ink);border-color:var(--accent);box-shadow:3px 3px var(--shadow)}
+body.themePurple .goPlay,body.themePink .goPlay,body.themeCosmos .goPlay,body.themeOcean .goPlay,body.themeEmber .goPlay{color:var(--ink)}
+body.themeCosmos{--bg:#050816;--panel:#0b1230;--ink:#edf8ff;--muted:#8ea9c9;--paper:#071126;--accent:#63d9ff;--button:#101f48;--table:#091737;--shadow:#02040d;--dice:#eafaff;--diceInk:#071126;background:#050816}
+body.themeOcean{--bg:#031d24;--panel:#07333b;--ink:#eaffff;--muted:#91c8cb;--paper:#062a31;--accent:#43e6d1;--button:#0b4b52;--table:#062c35;--shadow:#011116;--dice:#efffff;--diceInk:#062a31;background:#031d24}
+body.themeEmber{--bg:#210b08;--panel:#3a1510;--ink:#fff4df;--muted:#d5a58e;--paper:#2a0e0a;--accent:#ff9d3d;--button:#5a2014;--table:#35120d;--shadow:#120403;--dice:#fff6e8;--diceInk:#32100a;background:#210b08}
+body.themeCosmos .mainMenu,body.themeOcean .mainMenu,body.themeEmber .mainMenu{background:var(--bg)}
+body.themeCosmos .mainMenu:before{content:'';position:absolute;width:38vmin;height:38vmin;left:50%;top:48%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#02030a 0 38%,transparent 40%),conic-gradient(from 0deg,transparent,#63d9ff,#6f5cff,transparent);filter:blur(1px);animation:cosmicSpin 9s linear infinite;opacity:.7;pointer-events:none}
+body.themeCosmos .mainMenu:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,transparent 0 14%,rgba(99,217,255,.09) 15%,transparent 31%),repeating-radial-gradient(circle at 50% 48%,transparent 0 12%,rgba(99,217,255,.045) 12.2% 12.5%);animation:cosmicPulse 5s ease-in-out infinite;pointer-events:none}
+body.themeOcean .mainMenu:after{content:'';position:absolute;inset:0;background:repeating-radial-gradient(ellipse at 50% 100%,transparent 0 8%,rgba(67,230,209,.08) 8.2% 8.5%);animation:waveDrift 8s linear infinite;pointer-events:none}
+body.themeEmber .mainMenu:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 80%,rgba(255,120,40,.18),transparent 45%),radial-gradient(circle at 20% 30%,rgba(255,157,61,.08),transparent 30%);animation:emberPulse 3s ease-in-out infinite;pointer-events:none}
+@keyframes cosmicSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes cosmicPulse{50%{transform:scale(1.06);opacity:.65}}
+@keyframes waveDrift{to{transform:translateY(-4%) scale(1.05)}}
+@keyframes emberPulse{50%{filter:brightness(1.35);transform:scale(1.03)}}
+@media(prefers-reduced-motion:reduce){body.themeCosmos .mainMenu:before,body.themeCosmos .mainMenu:after,body.themeOcean .mainMenu:after,body.themeEmber .mainMenu:after{animation:none}}
 </style>
 
 <style>
@@ -218,218 +237,8 @@ body.themePink .mainMenu:before{filter:drop-shadow(0 0 45px rgba(198,83,130,.36)
 .eliminationRipple{position:fixed;width:18px;height:18px;border:3px solid rgba(255,255,255,.95);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%) scale(.2);animation:disgraceRipple .58s cubic-bezier(.16,.8,.2,1) forwards;box-shadow:0 0 8px rgba(255,255,255,.55)}
 @keyframes disgraceRipple{0%{opacity:.95;transform:translate(-50%,-50%) scale(.2)}70%{opacity:.55}100%{opacity:0;transform:translate(-50%,-50%) scale(5.2)}}
 </style>
-
-<style id="theme-full-gameplay-fix">
-/* D6GRACE — temas visuais completos durante a partida.
-   Somente aparência: não altera regras, estado ou eventos do jogo. */
-:root{
-  --theme-bg:#07090c;
-  --theme-surface:#0e1217;
-  --theme-surface2:#151a21;
-  --theme-border:#505963;
-  --theme-accent:#d7dbe2;
-  --theme-accent2:#8f98a5;
-  --theme-glow:rgba(220,225,235,.28);
-  --theme-text:#f2f4f7;
-  --theme-muted:#aab1ba;
-}
-body.themePurple{
-  --theme-bg:#10071a;
-  --theme-surface:#1b0c2b;
-  --theme-surface2:#29113d;
-  --theme-border:#7547a0;
-  --theme-accent:#c58cff;
-  --theme-accent2:#8d5bc7;
-  --theme-glow:rgba(190,105,255,.38);
-  --theme-text:#fbf4ff;
-  --theme-muted:#c9b5dc;
-}
-body.themePink{
-  --theme-bg:#19070f;
-  --theme-surface:#2b0d1a;
-  --theme-surface2:#401326;
-  --theme-border:#c34d78;
-  --theme-accent:#ff79a9;
-  --theme-accent2:#d14e7e;
-  --theme-glow:rgba(255,85,145,.38);
-  --theme-text:#fff2f7;
-  --theme-muted:#ddb4c4;
-}
-body.lightTheme{
-  --theme-bg:#eceff3;
-  --theme-surface:#ffffff;
-  --theme-surface2:#e1e5ea;
-  --theme-border:#171a1e;
-  --theme-accent:#171a1e;
-  --theme-accent2:#59616b;
-  --theme-glow:rgba(40,45,50,.20);
-  --theme-text:#111318;
-  --theme-muted:#4e5660;
-}
-
-/* The actual game canvas/page */
-body{
-  background-color:var(--theme-bg) !important;
-  color:var(--theme-text);
-}
-body::before{
-  background-color:var(--theme-bg) !important;
-}
-.app{
-  background:transparent !important;
-  color:var(--theme-text) !important;
-}
-.board,.player,.table,.panel,.side,.game,.gameArea,.gameScreen,
-.gameBoard,.playArea,.statusPanel,.handPanel,.royalPanel,
-.actions,.diceArea,.resultBox,.turnBox,.infoBox,.log,
-.cardArea,.normalArea,.royalArea{
-  color:var(--theme-text) !important;
-}
-.board,.player,.panel,.side,.gameBoard,.gameArea,.gameScreen,
-.statusPanel,.handPanel,.royalPanel,.resultBox,.turnBox,.infoBox,
-.cardArea,.normalArea,.royalArea{
-  background:var(--theme-surface) !important;
-  border-color:var(--theme-border) !important;
-  box-shadow:0 8px 25px rgba(0,0,0,.30),0 0 18px var(--theme-glow) !important;
-}
-.table{
-  background:var(--theme-surface2) !important;
-  border-color:var(--theme-border) !important;
-  box-shadow:inset 0 0 60px rgba(0,0,0,.28),0 0 24px var(--theme-glow) !important;
-}
-.table:before{
-  border-color:var(--theme-border) !important;
-  opacity:.65;
-}
-
-/* Text / headings */
-h1,h2,h3,h4,h5,h6,
-.title,.subtitle,.status,.note,.fanNote,
-.panel p,.panel li,.log,.turnLabel,.playerName{
-  color:var(--theme-text) !important;
-}
-.note,.fanNote,.muted,.panel p,.panel li{
-  color:var(--theme-muted) !important;
-}
-
-/* ALL gameplay controls */
-.btn,.diceBtn,.goPlay,.menuChoice,.actions button,
-button:not(.card):not(.closeBtn),
-input,select,textarea{
-  background:var(--theme-surface2) !important;
-  color:var(--theme-text) !important;
-  border-color:var(--theme-border) !important;
-  box-shadow:3px 3px rgba(0,0,0,.35),0 0 10px var(--theme-glow) !important;
-}
-.btn:hover,.diceBtn:hover,.goPlay:hover,.menuChoice:hover,
-.actions button:hover,button:not(.card):not(.closeBtn):hover{
-  background:var(--theme-accent2) !important;
-  color:#fff !important;
-  border-color:var(--theme-accent) !important;
-  box-shadow:0 0 18px var(--theme-glow) !important;
-}
-.btn.gold,.gold{
-  background:var(--theme-accent2) !important;
-  border-color:var(--theme-accent) !important;
-  color:#fff !important;
-}
-
-/* Inputs / logs */
-input,select,textarea{
-  background:var(--theme-bg) !important;
-  color:var(--theme-text) !important;
-}
-.log{
-  background:var(--theme-bg) !important;
-  border-color:var(--theme-border) !important;
-}
-
-/* Dice/result displays */
-.dice,.die,.diceFace,.result,.resultNumber,.diceResult,
-.sumResult,.target,.score,.total{
-  border-color:var(--theme-border) !important;
-  box-shadow:0 0 16px var(--theme-glow) !important;
-}
-
-/* Modal overlays also inherit the selected theme */
-.modal,.modalBox,.overlay,.popup,.dialog,.picker,.pickerBox,
-.roguelikeScreen,.modifierScreen,.playerCardsModal{
-  color:var(--theme-text) !important;
-}
-.modalBox,.popup,.dialog,.pickerBox,.playerCardsModal{
-  background:var(--theme-surface) !important;
-  border-color:var(--theme-border) !important;
-  box-shadow:0 0 35px var(--theme-glow) !important;
-}
-
-/* Keep cards' own colors/rules intact. Only add theme-colored depth. */
-.card{
-  box-shadow:3px 4px rgba(0,0,0,.45),0 0 8px var(--theme-glow) !important;
-}
-
-/* Theme-specific atmosphere over the whole gameplay viewport */
-#gameThemeFX{
-  position:fixed !important;
-  inset:0 !important;
-  z-index:0 !important;
-  pointer-events:none !important;
-}
-.app{position:relative !important;z-index:2 !important;}
-
-/* purple gameplay */
-body.themePurple .board,
-body.themePurple .player,
-body.themePurple .panel,
-body.themePurple .table{
-  background:linear-gradient(145deg,#1a0b29,#2a1040) !important;
-}
-body.themePurple .btn,
-body.themePurple .diceBtn,
-body.themePurple .goPlay{
-  background:linear-gradient(145deg,#3a1855,#5b267d) !important;
-}
-
-/* pink gameplay */
-body.themePink .board,
-body.themePink .player,
-body.themePink .panel,
-body.themePink .table{
-  background:linear-gradient(145deg,#2b0a18,#471126) !important;
-}
-body.themePink .btn,
-body.themePink .diceBtn,
-body.themePink .goPlay{
-  background:linear-gradient(145deg,#55152f,#8d2850) !important;
-}
-
-/* black gameplay */
-body:not(.themePurple):not(.themePink):not(.lightTheme) .board,
-body:not(.themePurple):not(.themePink):not(.lightTheme) .player,
-body:not(.themePurple):not(.themePink):not(.lightTheme) .panel,
-body:not(.themePurple):not(.themePink):not(.lightTheme) .table{
-  background:linear-gradient(145deg,#090b0e,#151a20) !important;
-}
-
-/* white gameplay */
-body.lightTheme .board,
-body.lightTheme .player,
-body.lightTheme .panel,
-body.lightTheme .table{
-  background:linear-gradient(145deg,#ffffff,#dfe4e9) !important;
-  color:#111318 !important;
-}
-body.lightTheme .btn,
-body.lightTheme .diceBtn,
-body.lightTheme .goPlay{
-  background:linear-gradient(145deg,#ffffff,#cbd1d8) !important;
-  color:#111318 !important;
-  border-color:#111318 !important;
-}
-</style>
-
 </head>
 <body>
-<div id="gameThemeFX" aria-hidden="true"><div class="gameCosmosLayer"></div><div class="gameOceanLayer"></div><div class="gameEmberLayer"></div><div class="gamePurpleLayer"></div><div class="gamePinkLayer"></div></div>
 <div class="eyeOverlay" id="eyeOverlay" aria-hidden="true"></div>
 <div class="centralEyeOverlay" id="centralEyeOverlay" aria-hidden="true"></div>
 <div class="themeDecor pinkDecor" aria-hidden="true">
@@ -460,6 +269,9 @@ body.lightTheme .goPlay{
         <button class="menuThemeChoice black" onclick="setTheme('black')">● PRETO</button>
         <button class="menuThemeChoice purple" onclick="setTheme('purple')">◆ ROXO</button>
         <button class="menuThemeChoice pink" onclick="setTheme('pink')">♥ ROSA</button>
+        <button class="menuThemeChoice cosmos" onclick="setTheme('cosmos')">✦ COSMOS</button>
+        <button class="menuThemeChoice ocean" onclick="setTheme('ocean')">≈ OCEANO</button>
+        <button class="menuThemeChoice ember" onclick="setTheme('ember')">✹ BRASA</button>
       </div>
     </div>
     <div class="menuCredits" aria-label="Créditos">A-R-T-U-R<br>C-A-I-O<br>S-T-I-F-L-E-R</div>
@@ -1063,29 +875,12 @@ function confirmRoguelikeModifier(){
 }
 
 function openPlayerCardMenu(i){let p=state.players[i];if((mode==='online'||mode==='roguelikeOnline')&&i!==myPlayer)return;let mods=mode==='roguelikeOnline'?(state.roguelikeModifiers?.[i]||[]).map(x=>{let m=ROGUELIKE_MODS.find(y=>y.effect===x.effect);return m?{...m,level:x.level}:null}).filter(Boolean):[];let normalHtml=p.normal.length?p.normal.map(c=>`<span class="ownedNormalChip ${c.color==='red'?'red':''}">${c.value===1?'A':c.value}${c.symbol}</span>`).join(''):'<span class="playerCardsEmpty">Nenhuma carta normal.</span>';let modHtml=mods.length?mods.map((m,k)=>`<article class="ownedModCard tier${m.tier}" style="--rot:${k%2?-1.2:1.2}deg"><div class="ownedModIcon">${roguelikeTierIcon(m.tier)}</div><div class="ownedModHead"><span>${m.name}</span><span>×${m.level}</span></div><p><b>TIER ${m.tier}</b> · ${m.desc}</p></article>`).join(''):'<span class="playerCardsEmpty">Nenhum modificador roguelike escolhido ainda.</span>';let royalHtml=p.royal.length?p.royal.map(c=>{let names={K:'REI',Q:'RAINHA',J:'VALETE',C:'CORINGA'};return `<span class="ownedNormalChip">${names[c.rank]||c.rank}</span>`}).join(''):'<span class="playerCardsEmpty">Nenhuma carta de realeza.</span>';showModal(`<div class="playerCardsModal"><h2>☰ CARTAS — JOGADOR ${i+1}</h2><p>Veja as cartas disponíveis e, no Roguelike, os efeitos que este jogador já acumulou.</p><div class="playerCardsSection"><h3>◆ CARTAS NORMAIS</h3><div class="ownedNormalLine">${normalHtml}</div></div><div class="playerCardsSection"><h3>★ REALEZA</h3><div class="ownedNormalLine">${royalHtml}</div></div>${mode==='roguelikeOnline'?`<div class="playerCardsSection"><h3>✦ MODIFICADORES ROGUELIKE</h3><div class="playerCardsGrid">${modHtml}</div><div class="playerRarityLegend"><span>L1 · CINZA</span><span class="l2">L2 · VERDE</span><span class="l3">L3 · AZUL</span><span class="l4">L4 · DOURADO</span><span class="l5">L5 · VERMELHO</span></div></div>`:''}<button class="btn gold" onclick="closeModal()">Fechar</button></div>`)}
-function setTheme(theme){
-  document.body.classList.remove('themePurple','themePink','lightTheme');
-  if(theme==='purple') document.body.classList.add('themePurple');
-  else if(theme==='pink') document.body.classList.add('themePink');
-  else if(theme==='white') document.body.classList.add('lightTheme');
-  localStorage.setItem('disgraceTheme',theme);
-  const root=document.documentElement;
-  root.dataset.disgraceTheme=theme;
-  document.body.dataset.disgraceTheme=theme;
-  const fx=document.getElementById('gameThemeFX');
-  if(fx) fx.dataset.theme=theme;
-  document.getElementById('themePanel')?.classList.remove('show');
-  if(typeof scheduleThemeAmbient==='function') scheduleThemeAmbient();
-}
-function initTheme(){let t=localStorage.getItem('disgraceTheme');if(t==='purple'||t==='pink'||t==='black'||t==='white')setTheme(t);else setTheme('black')}
-function refreshThemeFX(){const t=document.documentElement.dataset.disgraceTheme||localStorage.getItem('disgraceTheme')||'black';document.body.classList.remove('themePurple','themePink','lightTheme');if(t==='purple')document.body.classList.add('themePurple');else if(t==='pink')document.body.classList.add('themePink');document.documentElement.dataset.disgraceTheme=t;const fx=document.getElementById('gameThemeFX');if(fx)fx.dataset.theme=t;}
-function restoreTheme(){refreshThemeFX();if(typeof scheduleThemeAmbient==='function')scheduleThemeAmbient()}
+function setTheme(theme){document.body.classList.remove('themePurple','themePink','themeCosmos','themeOcean','themeEmber','lightTheme');if(theme==='purple')document.body.classList.add('themePurple');else if(theme==='pink')document.body.classList.add('themePink');else if(theme==='cosmos')document.body.classList.add('themeCosmos');else if(theme==='ocean')document.body.classList.add('themeOcean');else if(theme==='ember')document.body.classList.add('themeEmber');localStorage.setItem('disgraceTheme',theme);document.getElementById('themePanel').classList.remove('show');if(typeof scheduleThemeAmbient==='function')scheduleThemeAmbient()}
+function initTheme(){let t=localStorage.getItem('disgraceTheme');if(['purple','pink','black','cosmos','ocean','ember'].includes(t))setTheme(t);else setTheme('black')}
 function showMainMenu(){const s=document.getElementById('roguelikeScreen');if(s){s.classList.remove('show');s.setAttribute('aria-hidden','true')}document.getElementById('mainMenu').classList.remove('hide');document.getElementById('menuOnline').classList.toggle('show',false);document.getElementById('themePanel').classList.toggle('show',false)}
 const bind=(id,fn)=>{const e=document.getElementById(id);if(e)e.onclick=fn};bind('themeToggle',()=>document.getElementById('themePanel').classList.toggle('show'));bind('roguelikeMode',openRoguelike);document.getElementById('backFromRoguelike').onclick=closeRoguelike;document.getElementById('backFromRoguelikePicker').onclick=closeRoguelike;document.getElementById('newGame').onclick=()=>{if(confirm('Começar uma nova partida?'))newGame()};document.getElementById('mainMenuBtn').onclick=showMainMenu;document.getElementById('play').onclick=play;document.getElementById('roguelikeChooseBtn').onclick=()=>openRoguelikePicker();document.getElementById('pass').onclick=pass;document.querySelectorAll('.diceBtn').forEach(b=>b.onclick=()=>roll(+b.dataset.n));document.getElementById('host').onclick=setupHost;document.getElementById('join').onclick=setupJoin;document.getElementById('onlineMode').onclick=()=>document.getElementById('menuOnline').classList.add('show');document.getElementById('menuHost').onclick=setupHost;document.getElementById('menuJoinDirect').onclick=()=>{document.getElementById('room').value=document.getElementById('menuRoomCode').value.trim();setupJoin()};document.getElementById('menuJoin').onclick=()=>{document.getElementById('room').value=document.getElementById('menuRoomCode').value.trim();setupJoin()};document.querySelectorAll('#room,#menuRoomCode').forEach(i=>i.addEventListener('input',()=>{i.value=i.value.replace(/\D/g,'').slice(0,4)}));
 document.getElementById('rules').onclick=()=>showModal(`<h2>Como jogar</h2><p><b>1.</b> Cada jogador começa com 15 normais + 5 de realeza.</p><p><b>2.</b> O jogador da vez rola 1–6 dados. A soma vira o alvo. Depois que o resultado aparece, os dois jogadores podem tentar suas próprias cartas; cada jogador pode eliminar normais apenas uma vez por turno. No Roguelike, jogar uma combinação válida encerra automaticamente a participação daquele jogador no turno; ele não precisa apertar PASSAR TURNO.</p><p><b>3.</b> Cartas da mesma cor somam; preto + vermelho subtrai. O Ás permite escolher entre 1 e 11 quando for selecionado para a jogada.</p><p><b>4.</b> Cartas da realeza podem ser usadas no turno de qualquer jogador, mas cada uma respeita sua própria fase: Valete antes da rolagem; Rei e Rainha depois da rolagem. A regra do Rei vale para <b>todos os jogadores</b> e pode permitir <b>até</b> um limite de cartas ou exigir <b>exatamente</b> esse número.</p><p><b>5.</b> No online existem <b>4 Coringas</b> por partida; cada um tem 5% de chance de ser entregue ao Jogador 1 e 5% ao Jogador 2.</p><p><b>6.</b> Coringa: Batalha matemática. Quem errar compra 1 normal. No Roguelike, os modificadores se acumulam e podem transformar cartas em expressões matemáticas.</p><p><b>7.</b> Quem zerar todas as cartas <b>normais</b> vence imediatamente; as cartas de realeza restantes não impedem o fim da partida.</p><button class="btn gold" onclick="closeModal()">Fechar</button>`);
-document.querySelectorAll('button').forEach(b=>{if((b.textContent||'').trim().toUpperCase().includes('JOGAR LOCAL'))b.remove()});state=initial();render();initTheme();restoreTheme();initMenuParticles();initThemeAmbient();log('Escolha um modo no menu inicial.');document.getElementById('mainMenu').classList.remove('hide');
-
-const _d6graceThemeNavGuard=(()=>{const origShowMainMenu=showMainMenu;showMainMenu=function(){origShowMainMenu();restoreTheme()};const origOpenRoguelike=openRoguelike;openRoguelike=function(){restoreTheme();return origOpenRoguelike()};if(typeof closeRoguelike==='function'){const origCloseRoguelike=closeRoguelike;closeRoguelike=function(){origCloseRoguelike();restoreTheme()}}return true})();
+document.querySelectorAll('button').forEach(b=>{if((b.textContent||'').trim().toUpperCase().includes('JOGAR LOCAL'))b.remove()});state=initial();render();initTheme();initMenuParticles();initThemeAmbient();log('Escolha um modo no menu inicial.');document.getElementById('mainMenu').classList.remove('hide');
 </script>
 </body>
 </html>
